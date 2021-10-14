@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+//import propTypes from "prop-types";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state= {
+    isLoading : true
+  }
+
+  componentDidMount(){
+  // 렌더링이 끝나면 5초 후에 state의 isLoading을 false로 변경한다.
+  // 5초후인 이유는 그냥 너무 빨리 렌더링 되어서 잘 작동하는지 육안으로 확인하기 위해.
+    setTimeout(() => {
+      this.setState( { isLoading: false } );
+    }, 5000)
+  }
+
+  render() {
+    const state = this.state;
+    // const {isLoading} = this.state;
+    return(
+      <div>
+        <h1>
+          { state.isLoading ? "Loading... It means rendering is still in progress." : "I'm ready! It means rendering is complete." }
+        </h1>
+      </div>
+    );
+  }
+
 }
 
 export default App;
